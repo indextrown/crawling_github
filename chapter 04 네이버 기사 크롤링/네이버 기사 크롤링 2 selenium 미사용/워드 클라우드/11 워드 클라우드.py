@@ -2,11 +2,19 @@ import requests
 from bs4 import BeautifulSoup
 import time
 import pyautogui
+import pyperclip  #클립보드 관련 내장함수
 
-#사용자 입력   
+#사용자 입력
 keyword = pyautogui.prompt("검색어를 입력하시오:")
 #pyautogui.prompt는 리턴 데이터 기본 값은 문자열임 그래서 int로 강제형변환
 lastpage = int(pyautogui.prompt("몇 페이지까지 크롤링 할까요?"))
+
+# 본문 전체 내용
+total_content = ""
+
+# 기사 개수
+article_num = 0
+
 
 page_num=1
 #여러 페이지 가져오기
@@ -41,12 +49,12 @@ for i in range(1, lastpage * 10, 10):
             # 만약 연애 뉴스 라면 //response => 링크가 리다이렉션인지(사이트 주소가 바뀌는지) 확인하기 위해 response.url 로 만듬
             if "entertain" in response.url:
                 # 연예뉴스 사이트 css선택자 사용
-                title = soup.select_one(".end_tit")
+                #title = soup.select_one(".end_tit")
                 content = soup.select_one("#articeBody")
             # 그게 아니고 스포츠 뉴스 url 이면
             elif "sports" in response.url:
                 # 스포츠뉴스 사이트 css선택자 사용
-                title = soup.select_one("h4.title")
+                #title = soup.select_one("h4.title")
                 content = soup.select_one("#newsEndContents")
                 #본문 내용안에 불필요한 div, p 삭제
                 divs = content.select("div")
@@ -60,7 +68,7 @@ for i in range(1, lastpage * 10, 10):
             # 그게 아니면
             else:
                 # 일반뉴스 사이트 css선택자 사용
-                title = soup.select_one(".media_end_head_title")
+                #title = soup.select_one(".media_end_head_title")
                 content = soup.select_one("#dic_area")
                 brs = content.select("br")
                 for br in brs:
@@ -69,10 +77,19 @@ for i in range(1, lastpage * 10, 10):
                 for br in brs:
                     br.decompose()
 
-            print("=======링크======= \n", url)
+
+
+
+            #print("=======링크======= \n", url)
             # 공백 제거 .text.strip()
-            print("=======제목======= \n", title.text.strip())
+            #print("=======제목======= \n", title.text.strip())
 
             print("=======본문======= \n", content.text.strip())
-            # time.sleep(0.3)
+
+            total_content += content.text.strip()
+            article_num = article_num + 1
+            time.sleep(0.3)
     page_num = page_num+1
+print(f"{article_num}개 기사 크롤링 완료!!")
+pyperclip.copy(total_content)
+pyautogui.alert("클립보드에 복사되었습니다.")
