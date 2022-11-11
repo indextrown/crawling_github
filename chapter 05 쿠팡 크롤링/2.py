@@ -29,10 +29,9 @@ keyword = pyautogui.prompt("검색어를 입력하시오:")
 lastpage = int(pyautogui.prompt("몇 페이지까지 크롤링 할까요?"))
 
 
-##f"https://www.coupang.com/np/search?q={keyword}&channel=user&component=&eventCategory=SRP&trcid=&traid=&sorter=scoreDesc&minPrice=&maxPrice=&priceRange=&filterType=&listSize=36&filter=&isPriceRange=false&brand=&offerCondition=&rating=0&page={i}&rocketAll=false&searchIndexingToken=1=6&backgroundColor="
 # step 3 연산부
 for page in range(1, lastpage+1, 1):
-    main_url = f"https://www.coupang.com/np/search?rocketAll=false&q={keyword}page={page}&trcid=&traid=&filterSetByUser=true&channel=user&backgroundColor=&searchProductCount=595564&component=&rating=0&sorter=scoreDesc&listSize=36"
+    main_url = f"https://www.coupang.com/np/search?q={keyword}&channel=user&component=&eventCategory=SRP&trcid=&traid=&sorter=scoreDesc&minPrice=&maxPrice=&priceRange=&filterType=&listSize=36&filter=&isPriceRange=false&brand=&offerCondition=&rating=0&page={page}&rocketAll=false&searchIndexingToken=1=6&backgroundColor="
 
     # headers={'user-agent':'Mozila/5.0'} 봇으로 접근 가능하게 함 headers={'user-agent':'Mozila/5.0'}
     response = requests.get(main_url, headers=header)
