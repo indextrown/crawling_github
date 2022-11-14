@@ -27,6 +27,7 @@ header = {
 
 # step1+2: 입력부분
 keyword = pyautogui.prompt("검색어를 입력하시오:")
+
 ##lastpage = int(pyautogui.prompt("몇 페이지까지 크롤링 할까요?"))
 
 
@@ -134,7 +135,18 @@ wb.save(f"쿠팡 크롤링 결과/{keyword}.xlsx")
 # 특정 이름으로 저장하기
 # wb.save('쿠팡 크롤링 결과/coupang_result.xlsx')
 
+## 하이퍼링크를 달기 위한 코드 과정
+from openpyxl import load_workbook
+wb = load_workbook(f"쿠팡 크롤링 결과/{keyword}.xlsx")
 
+# 시트 활성화
+ws = wb.active
+
+# 하이퍼링크 활성화
+for i in range(2, ws.max_row+1):
+    ws['E' + str(i)].hyperlink = ws['E'+str(i)].value
+    ws['E' + str(i)].style = "Hyperlink"
+wb.save(f"쿠팡 크롤링 결과/{keyword}_hyperlink.xlsx")
 
 
 
