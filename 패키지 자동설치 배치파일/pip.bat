@@ -11,6 +11,9 @@ pip install selenium
 pip install webdriver-manager
 pip install requests
 pip install pyautogui
+pip install pyautogui
+pip install lxml
+pip install openpyxl
 
 echo succed!
 echo -----
