@@ -7,6 +7,9 @@ from webdriver_manager.chrome import ChromeDriverManager  # 크롬 드라이버 
 from selenium.webdriver.common.by import By
 import time
 import openpyxl
+import requests
+
+from bs4 import BeautifulSoup
 
 
 # 헤더에 User-Agent, Accept-Language 를 추가하지 않으면 멈춥니다
@@ -69,9 +72,7 @@ for i in range(1, 3):
     time.sleep(1)
 
     html = driver.page_source
-    import requests
 
-from bs4 import BeautifulSoup
 
 soup = BeautifulSoup(html, 'lxml')  # html.parser
 
