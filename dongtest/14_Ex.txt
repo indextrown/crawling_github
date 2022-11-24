@@ -1,0 +1,7 @@
+public class 클래스명 {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 9; i++) {
+            System.out.printf("3 x %d = %d\n", i, 3 * i);
+        }
+    }
+}
