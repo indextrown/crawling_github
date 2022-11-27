@@ -4,14 +4,15 @@
 # 공식문서 https://pyautogui.readthedocs.io/en/latest/index.html
 # 독학하는 방법 => 공식문서 활용
 # 튜플 데이터가 변하지 않는 리스트 ()
-
+import time
 
 # sys모듈은 파이썬 인터프리터를 제어 할 수 있고
 # os 모듈은 운영체제를 제어 할 수 있다
 
 import sys
 import pyautogui
-# 마우스 커서 위치 좌표
+
+# 마우스 커서 위치 출력
 # print(pyautogui.position())
 
 # 화면 해상도 크기
@@ -29,7 +30,8 @@ try:
 except KeyboardInterrupt:
     print('\n')'''
 
-# 마우스 움직임
+# 마우스 움직임 한번에 이동
+#time.sleep(2) # 2초 뒤에 다음 명령어 실행
 #pyautogui.moveTo(100, 200)
 
 # 5초에 걸쳐서 마우스 움직임
@@ -43,6 +45,9 @@ except KeyboardInterrupt:
 
 # 마우스 클릭
 #pyautogui.click()
+#pyautogui.doubleClick()
+#pyautogui.click(button='right')  # 오른쪽 마우스 클릭
+pyautogui.click(clicks=3, interval=1) # 3번 클릭 1초마다
 
 # 특정 위치 클릭
 #pyautogui.click(x=100, y=200)
