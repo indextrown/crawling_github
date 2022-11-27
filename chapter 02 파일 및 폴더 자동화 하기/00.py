@@ -11,4 +11,4 @@ try:
     os.mkdir(path3)
     os.mkdir(path4)
 except:
-    print("이미 파일 존재")
+    print("이미 파일 존재") # test
