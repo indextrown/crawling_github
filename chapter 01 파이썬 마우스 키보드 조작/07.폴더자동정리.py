@@ -1,13 +1,13 @@
 import os
 
 # 정리할 확장자 리스트
-extension_list = ['.jpg', 'png', '.gif', '.jpg', '.pdf']
+extension_list = ['.jpg', 'png', '.gif', '.jpg', '.pdf', '.mp4']
 
 # 정리할 폴더
 target = "C:/Users/Index/Downloads"
 
 # 만들 폴더
-destination = target + "/images"
+destination = target + "/pdf"
 
 # 폴더가 없다면 만들기
 if not os.path.exists(destination):
