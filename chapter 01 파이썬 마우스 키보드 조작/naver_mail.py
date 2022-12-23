@@ -65,7 +65,7 @@ pyautogui.hotkey("ctrl", "v")
 #메일 제목 입력
 mailaddress = driver.find_element(By.CSS_SELECTOR, "#subject_title")
 mailaddress.click()
-pyperclip.copy("테스트메일 입니다")
+pyperclip.copy("테스트메일 입니다!")
 pyautogui.hotkey("ctrl", "v")
 
 
