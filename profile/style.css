@@ -1,0 +1,29 @@
+/* 주석하는법 shift alt a  */
+
+body {
+    text-align: center;    /* body를 가운데로 정렬 */
+}
+
+table {
+    margin: 0 auto;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul > li > a {
+    color: orange;
+}
+
+.round {
+    border-radius: 20%;
+} 
+
+
+
+span {
+    color: steelblue;
+}
+
