@@ -1,0 +1,5 @@
+pyinstaller -w -F --add-data="desig
+n.ui;./" "gui_end.py"
+
+
+pyinstaller -w -F naver_mail.py
