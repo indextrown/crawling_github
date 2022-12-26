@@ -10,6 +10,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager  #크롬 드라이버 자동 업데이트
 
+n = int(input("이웃추가 횟수를 입력하시오"))
 #브라우저 꺼짐 방지
 chrome_options = Options()
 chrome_options.add_experimental_option("detach", True)
@@ -29,6 +30,7 @@ driver = webdriver.Chrome(service=service, options=chrome_options)
 driver.implicitly_wait(5) #웹페이지가 로딩 될때까지 5초는 기다림
 driver.maximize_window()  #화면 최대화
 driver.get("https://nid.naver.com/nidlogin.login?svctype=262144&url=http://m.naver.com/")
+
 
 # 아이디 입력창
 id = driver.find_element(By.CSS_SELECTOR, "#id")
@@ -58,11 +60,20 @@ search_url = "https://m.search.naver.com/search.naver?where=m_blog&query=%EC%A0%
 driver.get(search_url)
 
 
+#n = 10    # 총 이웃 신청 개수
+count = 0 # 현재 이웃 신청 개수
+index = 0 # 현재 블로그 글 번호
+
+while count < n:
 
 
-# 첫 블로그 사용자 프로필 클릭( element는 1개 elements 는 여러개)
-ids = driver.find_elements(By.CSS_SELECTOR, ".sub_txt.sub_name")
-for id in ids:
+    # 첫 블로그 사용자 프로필 클릭( element는 1개 elements 는 여러개)
+    ids = driver.find_elements(By.CSS_SELECTOR, ".sub_txt.sub_name")
+
+    # 현재 블로그 글 번호에 맞는 아이디 찾기
+    id = ids[index]
+
+
     # 블로그 아이디 클릭
     # 새창으로 열기
     id.send_keys(Keys.CONTROL + '\n')
@@ -78,7 +89,7 @@ for id in ids:
     try:
         # 이웃추가 버튼
         make_friends = driver.find_element(By.CSS_SELECTOR, ".link__RsHMX.add_buddy_btn__oGR_B")
-        time.sleep(1)
+        time.sleep(2)
         make_friends.click()
 
         # 서로 이웃 추가
@@ -108,7 +119,8 @@ for id in ids:
         # 확인
         ok = driver.find_element(By.CSS_SELECTOR, ".btn_ok")
         ok.click()
-        time.sleep(3)
+        count += 1  # 현재 이웃 신청 개수 증가
+        time.sleep(2)
 
 
     except:
@@ -124,6 +136,7 @@ for id in ids:
 
     # 기존 창으로 드라이버 전환
     driver.switch_to.window(all_windows[0])
+    index += 1 # 현재 블로그 글 번호 증가
 
 
 
